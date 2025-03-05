@@ -1,0 +1,13 @@
+.p-tabview-nav-content {
+    display: flex;
+    width: 100%;
+}
+
+::ng-deep .p-tabview-nav {
+    gap: 2rem;
+}
+
+::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    color: #fca311 !important;
+    border-color: #fca311;
+}

@@ -1,0 +1,93 @@
+<div class="register-container">
+	<p-toast />
+
+	<form
+		[formGroup]="registerForm"
+		(ngSubmit)="register()"
+		class="register-form"
+	>
+		<h2>Cadastro</h2>
+
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input
+				type="username"
+				id="username"
+				formControlName="username"
+				placeholder="Digite seu username"
+			/>
+			<div
+				*ngIf="
+					registerForm.get('username')?.invalid &&
+					registerForm.get('username')?.touched
+				"
+				class="error-message"
+			>
+				username inválido.
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input
+				type="email"
+				id="email"
+				formControlName="email"
+				placeholder="Digite seu email"
+			/>
+			<div
+				*ngIf="
+					registerForm.get('email')?.invalid &&
+					registerForm.get('email')?.touched
+				"
+				class="error-message"
+			>
+				Email inválido.
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="password">Senha</label>
+			<input
+				type="password"
+				id="password"
+				formControlName="password"
+				placeholder="Digite sua senha"
+			/>
+			<div
+				*ngIf="
+					registerForm.get('password')?.invalid &&
+					registerForm.get('password')?.touched
+				"
+				class="error-message"
+			>
+				Senha deve ter no mínimo 6 caracteres.
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="confirmPassword">Confirme a Senha</label>
+			<input
+				type="password"
+				id="confirmPassword"
+				formControlName="confirmPassword"
+				placeholder="Confirme sua senha"
+			/>
+			<div
+				*ngIf="
+					registerForm.errors?.['mismatch'] &&
+					registerForm.get('confirmPassword')?.touched
+				"
+				class="error-message"
+			>
+				As senhas não coincidem.
+			</div>
+		</div>
+
+		<button type="submit" [disabled]="registerForm.invalid">Cadastrar</button>
+
+		<div class="form-links">
+			<a routerLink="/auth/login">Já tem conta? Faça login.</a>
+		</div>
+	</form>
+</div>

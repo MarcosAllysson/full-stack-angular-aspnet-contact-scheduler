@@ -1,0 +1,75 @@
+<div class="card">
+	<p-toast />
+
+	<p-table
+		#dt
+		[value]="data"
+		[loading]="loading"
+		stripedRows
+		[tableStyle]="{ 'min-width': '50rem' }"
+		[paginator]="true"
+		[rows]="5"
+		[rowsPerPageOptions]="[5, 10, 20]"
+		[globalFilterFields]="['name', 'email']"
+	>
+		<ng-template pTemplate="caption">
+			<div class="flex items-center justify-content-end">
+				<p-iconField iconPosition="left">
+					<p-inputIcon>
+						<i class="pi pi-search"></i>
+					</p-inputIcon>
+
+					<input
+						pInputText
+						type="text"
+						(input)="onGlobalFilter(dt, $event)"
+						placeholder="Pesquise um contato"
+					/>
+				</p-iconField>
+			</div>
+		</ng-template>
+
+		<ng-template pTemplate="header">
+			<tr>
+				<th>Ações</th>
+
+				<th pSortableColumn="name">Nome <p-sortIcon field="name" /></th>
+				<th pSortableColumn="email">E-mail <p-sortIcon field="email" /></th>
+			</tr>
+		</ng-template>
+
+		<ng-template pTemplate="body" let-contact>
+			<tr>
+				<td>
+					<div class="flex">
+						<p-button
+							icon="pi pi-lock-open"
+							severity="warning"
+							[rounded]="true"
+							[outlined]="true"
+							(click)="activateContact(contact)"
+							pTooltip="Ativar contato"
+							tooltipPosition="top"
+						/>
+					</div>
+				</td>
+
+				<td>{{ contact.name }}</td>
+				<td>{{ contact.email }}</td>
+			</tr>
+		</ng-template>
+
+		<ng-template pTemplate="footer">
+			No total, há {{ data ? data.length : 0 }} contato(s) desativados(s).
+		</ng-template>
+
+		<ng-template pTemplate="loading">
+			<p-progressSpinner
+				strokeWidth="8"
+				fill="transparent"
+				animationDuration=".5s"
+				[style]="{ width: '50px', height: '50px' }"
+			/>
+		</ng-template>
+	</p-table>
+</div>

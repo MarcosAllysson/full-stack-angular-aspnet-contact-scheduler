@@ -1,0 +1,23 @@
+<p-dialog
+	[(visible)]="visible"
+	[modal]="true"
+	[style]="{ width: '450px' }"
+	header="{{ title }}"
+>
+	<p>{{ message }}</p>
+
+	<ng-container *ngIf="details">
+		<p class="text-sm text-gray-500">{{ details }}</p>
+	</ng-container>
+
+	<div class="flex justify-content-end mt-4 gap-2">
+		<p-button
+			label="Cancelar"
+			severity="secondary"
+			(click)="onCancel()"
+			[text]="true"
+		/>
+
+		<p-button label="Confirmar" severity="danger" (click)="onConfirm()" />
+	</div>
+</p-dialog>

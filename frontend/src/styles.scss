@@ -1,0 +1,126 @@
+$gutter: 1rem; //for primeflex grid system
+
+/* PrimeNG */
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+
+/* Demos */
+@import "assets/demo/styles/flags/flags.css";
+@import "assets/demo/styles/badges.scss";
+@import "assets/demo/styles/code.scss";
+
+// import Quill styles in styles.scss
+@import "../node_modules/quill/dist/quill.core.css";
+@import "../node_modules/quill/dist/quill.snow.css";
+@import "assets/layout/styles/layout/layout.scss";
+
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}
+
+.p-inputotp-input {
+    border: 1px solid #ccc;
+    height: 40px;
+}
+
+.p-dropdown-label {
+    font-size: 12px; /* Altere para o tamanho desejado */
+}
+
+/* STYLES FOR TABLE SECTIONS */
+::ng-deep .p-confirm-dialog .p-dialog-content {
+    justify-content: center;
+}
+
+input-text-view {
+    width: 100%;
+}
+
+/* Estilo para o toast */
+.customtoast {
+    background-color: #ffffff;
+}
+
+.p-toast .p-toast-message .p-toast-message-content {
+    /* padding: 1rem; */
+    padding: 0rem;
+}
+
+.custom-toast-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 6px;
+    background-color: #ffffff;
+    width: 1000px;
+    padding: 2rem;
+}
+
+.custom-toast-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.custom-toast-message {
+    color: #011e46;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 0.5rem;
+}
+
+.p-editor-container .p-editor-toolbar {
+    background-color: #14213d !important;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+.p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label {
+    border: 0 none;
+    color: #ffffff !important;
+}
+
+.ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button {
+    color: #ffffff !important;
+}
+
+.p-editor-container .p-editor-toolbar.ql-snow .ql-stroke {
+    stroke: #ffffff !important;
+}
+
+.p-editor-container
+    .p-editor-toolbar.ql-snow
+    .ql-picker.ql-expanded
+    .ql-picker-options {
+    background: #e6e6e6;
+    border: 0 none;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 0.75rem 0;
+}
+
+.p-editor-container
+    .p-editor-toolbar.ql-snow
+    .ql-picker.ql-expanded
+    .ql-picker-options
+    .ql-picker-item {
+    color: #14213d !important;
+}
+
+.p-editor-container .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.p-editor-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke {
+    stroke: #8b8b8b !important;
+}
+
+dropdown-default-view {
+    width: 100%;
+}
+
+.p-dropdown {
+    width: 100%;
+}

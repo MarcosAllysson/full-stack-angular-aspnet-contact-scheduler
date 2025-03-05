@@ -1,0 +1,43 @@
+<div class="home-container">
+	<header class="home-header">
+		<div class="header-content">
+			<h1>Sistema de Agendamento Telefônico</h1>
+
+			<p class="subtitle">
+				Gerencie seus contatos de forma simples, rápida e eficiente. Mantenha
+				sua agenda organizada com ferramentas intuitivas de cadastro, consulta e
+				gerenciamento de contatos.
+			</p>
+
+			<div class="cta-actions">
+				<p-button
+					label="Gerenciar Contatos"
+					icon="pi pi-users"
+					(click)="navigateToContacts()"
+					severity="success"
+					class="mr-2"
+				/>
+				<p-button
+					label="Novo Contato"
+					icon="pi pi-plus"
+					severity="secondary"
+					routerLink="/contact/listing"
+				/>
+			</div>
+		</div>
+	</header>
+
+	<section class="features-section">
+		<div class="grid">
+			<div *ngFor="let feature of features" class="col-12 md:col-6 lg:col-3">
+				<div class="feature-card">
+					<div class="feature-icon">
+						<i [class]="feature.icon"></i>
+					</div>
+					<h3>{{ feature.title }}</h3>
+					<p>{{ feature.description }}</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

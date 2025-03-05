@@ -1,0 +1,241 @@
+<div class="card">
+	<p-toast />
+
+	<div class="flex justify-content-between mb-3">
+		<p-button
+			label="Novo Contato"
+			icon="pi pi-plus"
+			(click)="openNew()"
+			severity="success"
+		/>
+	</div>
+
+	<p-table
+		#dt
+		[value]="data"
+		[loading]="loading"
+		stripedRows
+		[tableStyle]="{ 'min-width': '50rem' }"
+		[paginator]="true"
+		[rows]="5"
+		[rowsPerPageOptions]="[5, 10, 20]"
+		[globalFilterFields]="['name', 'email', 'cellPhone', 'phone']"
+	>
+		<ng-template pTemplate="caption">
+			<div class="flex items-center justify-content-end">
+				<p-iconField iconPosition="left">
+					<p-inputIcon>
+						<i class="pi pi-search"></i>
+					</p-inputIcon>
+					<input
+						pInputText
+						type="text"
+						(input)="onGlobalFilter(dt, $event)"
+						placeholder="Pesquise um contato"
+					/>
+				</p-iconField>
+			</div>
+		</ng-template>
+
+		<ng-template pTemplate="header">
+			<tr>
+				<th>Ações</th>
+
+				<th pSortableColumn="name">Nome <p-sortIcon field="name" /></th>
+				<th pSortableColumn="email">E-mail <p-sortIcon field="email" /></th>
+				<th>Celular</th>
+				<th>Telefone</th>
+				<th>Favorito</th>
+				<th>Ativo</th>
+			</tr>
+		</ng-template>
+
+		<ng-template pTemplate="body" let-contact>
+			<tr>
+				<td>
+					<div class="flex gap-2">
+						<p-button
+							icon="pi pi-pencil"
+							severity="warning"
+							[rounded]="true"
+							[outlined]="true"
+							(click)="editContact(contact)"
+							pTooltip="Editar contato"
+							tooltipPosition="top"
+						/>
+						<p-button
+							icon="pi pi-trash"
+							severity="danger"
+							[rounded]="true"
+							[outlined]="true"
+							(click)="deleteContact(contact)"
+							pTooltip="Deletar contato"
+							tooltipPosition="top"
+						/>
+					</div>
+				</td>
+
+				<td>{{ contact.name }}</td>
+				<td>{{ contact.email }}</td>
+				<td>{{ formatNumber(contact.cellPhone, true) }}</td>
+				<td>{{ formatNumber(contact.phone) }}</td>
+				<td>{{ contact.isFavorite ? 'Sim' : 'Não' }}</td>
+				<td>{{ contact.isActive ? 'Sim' : 'Não' }}</td>
+			</tr>
+		</ng-template>
+
+		<ng-template pTemplate="footer">
+			No total, há {{ data ? data.length : 0 }} contato(s).
+		</ng-template>
+
+		<ng-template pTemplate="loading">
+			<p-progressSpinner
+				strokeWidth="8"
+				fill="transparent"
+				animationDuration=".5s"
+				[style]="{ width: '50px', height: '50px' }"
+			/>
+		</ng-template>
+	</p-table>
+
+	<p-dialog
+		[(visible)]="contactDialog"
+		[modal]="true"
+		[style]="{ width: '450px' }"
+		header="Contato"
+	>
+		<form [formGroup]="contactForm" (ngSubmit)="saveContact()">
+			<div class="grid p-fluid mt-3">
+				<div class="col-12">
+					<label for="name">Nome</label>
+
+					<input
+						id="name"
+						type="text"
+						pInputText
+						formControlName="name"
+						placeholder="Digite o nome"
+					/>
+
+					<small
+						*ngIf="
+							contactForm.get('name').invalid && contactForm.get('name').touched
+						"
+						class="p-error"
+					>
+						Nome é obrigatório (mínimo 3 caracteres)
+					</small>
+				</div>
+
+				<div class="col-12">
+					<label for="email">Email</label>
+
+					<input
+						id="email"
+						type="text"
+						pInputText
+						formControlName="email"
+						placeholder="Digite o email"
+					/>
+
+					<small
+						*ngIf="
+							contactForm.get('email').invalid &&
+							contactForm.get('email').touched
+						"
+						class="p-error"
+					>
+						Email inválido
+					</small>
+				</div>
+
+				<div class="col-12">
+					<label for="cellPhone">Celular</label>
+
+					<p-inputMask
+						id="cellPhone"
+						formControlName="cellPhone"
+						mask="(99) 9 9999-9999"
+						placeholder="(99) 9 9999-9999"
+					/>
+
+					<small
+						*ngIf="
+							contactForm.get('cellPhone').invalid &&
+							contactForm.get('cellPhone').touched
+						"
+						class="p-error"
+					>
+						Celular inválido
+					</small>
+				</div>
+
+				<div class="col-12">
+					<label for="phone">Telefone</label>
+
+					<p-inputMask
+						id="phone"
+						formControlName="phone"
+						mask="(99) 9999-9999"
+						placeholder="(99) 9999-9999"
+					/>
+
+					<small
+						*ngIf="
+							contactForm.get('phone').invalid &&
+							contactForm.get('phone').touched
+						"
+						class="p-error"
+					>
+						Telefone inválido
+					</small>
+				</div>
+
+				<div class="col-12 flex items-center">
+					<p-checkbox
+						formControlName="isFavorite"
+						[binary]="true"
+						inputId="isFavorite"
+					/>
+
+					<label for="isFavorite" class="ml-2">Favorito</label>
+				</div>
+
+				@if(contactForm.get('id').value){
+				<div class="col-12 flex items-center">
+					<p-checkbox
+						formControlName="isActive"
+						[binary]="true"
+						inputId="isActive"
+					/>
+
+					<label for="isActive" class="ml-2">Ativo</label>
+				</div>
+				}
+			</div>
+
+			<div class="flex justify-content-end mt-4">
+				<p-button
+					label="Cancelar"
+					icon="pi pi-times"
+					severity="secondary"
+					(click)="contactDialog = false"
+					[text]="true"
+				/>
+
+				<p-button
+					label="Salvar"
+					icon="pi pi-check"
+					type="submit"
+					[disabled]="contactForm.invalid"
+					pTooltip="{{
+						contactForm.get('id').value
+							? 'Atualizar contato existente'
+							: 'Criar novo contato'
+					}}"
+					tooltipPosition="bottom"
+				/>
+			</div>
+		</form>
+	</p-dialog>
+</div>
