@@ -66,6 +66,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Seed data
-app.CreateSeedData();
+// app.CreateSeedData();
 
 app.Run();

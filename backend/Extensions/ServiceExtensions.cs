@@ -13,14 +13,14 @@ namespace backend.Extensions
     {
         public static void ConfigureDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            // services.AddDbContext<ContactSchedulerDbContext>(options =>
-            // {
-            //     options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
-            // });
-
             services.AddDbContext<ContactSchedulerDbContext>(options =>
-                options.UseInMemoryDatabase("ContactScheduler")
-            );
+            {
+                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            // services.AddDbContext<ContactSchedulerDbContext>(options =>
+            //     options.UseInMemoryDatabase("ContactScheduler")
+            // );
         }
 
         public static void ConfigureCors(this IServiceCollection services)

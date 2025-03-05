@@ -15,8 +15,8 @@ Este projeto é um sistema de agendamento telefônico full-stack desenvolvido co
 ### 1. Clone o Repositório
 
 ```sh
-git clone https://github.com/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/MarcosAllysson/full-stack-angular-aspnet-contact-scheduler.git
+cd full-stack-angular-aspnet-contact-scheduler
 ```
 
 ### 2. Configurar o Backend

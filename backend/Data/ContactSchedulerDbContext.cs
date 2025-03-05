@@ -34,16 +34,16 @@ namespace backend.Data
             {
                 new IdentityRole
                 {
-                    // Id="1",
-                    Id=Guid.NewGuid().ToString(),
+                    Id="1",
+                    // Id=Guid.NewGuid().ToString(),
                     Name = "Admin",
                     NormalizedName="ADMIN"
                 },
 
                 new IdentityRole
                 {
-                    // Id="2",
-                    Id=Guid.NewGuid().ToString(),
+                    Id="2",
+                    // Id=Guid.NewGuid().ToString(),
                     Name="User",
                     NormalizedName="USER"
                 }
