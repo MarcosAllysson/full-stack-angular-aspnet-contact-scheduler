@@ -44,11 +44,6 @@ http://localhost:8080
 localhost:5432
 ```
 
-## 🌐 Acesso Online
-
-- **Frontend:** (GitHub Pages)[https://link.com]
-- **Backend:** (Free ASP.NET Hosting)[https://link.com]
-
 ## ✅ Funcionalidades
 
 - Login e Cadastro de Usuários
