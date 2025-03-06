@@ -54,7 +54,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseCors("AllowAngularDevServer");
 
@@ -64,6 +64,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Apply migrations automatically
+app.ApplyDatabaseMigrations();
 
 // Seed data
 // app.CreateSeedData();

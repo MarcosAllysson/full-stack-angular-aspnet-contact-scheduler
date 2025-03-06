@@ -1,4 +1,11 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://sua-api-no-hosting.com/api/v1'
+  // https
+  // apiUrl: 'https://localhost:7021/api/v1',
+
+  // http
+  // apiUrl: 'http://localhost:5014/api/v1',
+
+  // docker
+  apiUrl: 'http://localhost:5000/api/v1',
 };

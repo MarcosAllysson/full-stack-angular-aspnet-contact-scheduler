@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   frontend:
     build:
@@ -21,7 +22,9 @@ services:
     ports:
       - '5000:80'
     depends_on:
-      - db
+      # - db
+      db:
+        condition: service_healthy # Só inicia após o banco estar saudável
     networks:
       - app-network
 
@@ -37,6 +40,11 @@ services:
       - '5432:5432'
     networks:
       - app-network
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres'] # Verifica se o Postgres está pronto
+      interval: 10s # Verifica a cada 10 segundos
+      timeout: 5s # Tempo limite por tentativa
+      retries: 5 # Tenta 5 vezes antes de falhar
 
 volumes:
   db_data:

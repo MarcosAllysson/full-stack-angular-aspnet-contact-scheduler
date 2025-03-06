@@ -23,6 +23,29 @@ namespace backend.Extensions
             // );
         }
 
+        public static void ApplyDatabaseMigrations(this WebApplication app)
+        {
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var logger = services.GetRequiredService<ILogger<Program>>();
+
+                try
+                {
+                    var context = services.GetRequiredService<ContactSchedulerDbContext>();
+
+                    context.Database.Migrate();
+                    logger.LogInformation("Migrations applied successfully.");
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "Error applying migrations to database.");
+                    // Opcional
+                    // throw;
+                }
+            }
+        }
+
         public static void ConfigureCors(this IServiceCollection services)
         {
             services.AddCors(options =>

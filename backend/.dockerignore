@@ -1,0 +1,32 @@
+# Binários e compilados
+**/bin/
+**/obj/
+**/out/
+
+# Arquivos e pastas de desenvolvimento
+**/.vs/
+**/.vscode/
+**/.idea/
+.git/
+.github/
+.gitlab/
+
+# Dependências 
+**/node_modules/
+
+# Logs e arquivos temporários
+**/*.log
+.DS_Store
+Thumbs.db
+
+# Arquivos de teste
+**/TestResults/
+**/*.Tests/
+**/[Tt]est[Rr]esults/
+
+# Arquivos de configuração local
+**/*.user
+**/*.userprefs
+**/*.dbmdl
+**/*.jfm
+**/local.settings.json

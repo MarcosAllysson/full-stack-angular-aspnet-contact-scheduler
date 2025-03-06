@@ -12,7 +12,39 @@ Este projeto é um sistema de agendamento telefônico full-stack desenvolvido co
 
 ## 🛠️ Como Rodar a Aplicação
 
-### 1. Clone o Repositório
+### 0. Via docker
+
+1. Build
+
+```sh
+docker-compose up --build
+```
+
+2. Parar os serviços:
+
+```sh
+docker-compose down
+```
+
+3. Abra a aplicação:
+
+```sh
+http://localhost:4200
+```
+
+4. API disponível em:
+
+```sh
+http://localhost:5000
+```
+
+5. Banco disponível em:
+
+```sh
+localhost:5432
+```
+
+### 1. Ou clone o repositório
 
 ```sh
 git clone https://github.com/MarcosAllysson/full-stack-angular-aspnet-contact-scheduler.git

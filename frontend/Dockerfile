@@ -10,11 +10,9 @@ COPY . .
 
 RUN npm run build -- --configuration production
 
-# RUN npm run build -- --output-path=dist --base-href=/
-
 FROM nginx:alpine
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist/* /usr/share/nginx/html
 
 EXPOSE 80
 

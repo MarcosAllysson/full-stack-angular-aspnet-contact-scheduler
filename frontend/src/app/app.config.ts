@@ -7,7 +7,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { MegaMenuModule } from 'primeng/megamenu';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { NgxIndexedDBModule } from 'ngx-indexed-db';
+// import { NgxIndexedDBModule } from 'ngx-indexed-db';
 
 import { routerConfig, routes } from './app.routes';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
@@ -20,11 +20,11 @@ export const appConfig: ApplicationConfig = {
             BrowserModule,
             MegaMenuModule,
             ProgressSpinnerModule,
-            BrowserAnimationsModule,
-            NgxIndexedDBModule.forRoot()),
-        {
-            provide: LocationStrategy,
-            useClass: PathLocationStrategy
-        },
+            BrowserAnimationsModule),
+        // NgxIndexedDBModule.forRoot()),
+        // {
+        //     provide: LocationStrategy,
+        //     useClass: PathLocationStrategy
+        // },
     ]
 };
