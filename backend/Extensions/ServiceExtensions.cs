@@ -90,10 +90,13 @@ namespace backend.Extensions
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidIssuer = configuration["JWT:Issuer"],
+                    ValidIssuer = configuration["JWT:Issuer"] ?? "http://backend:80",
+
                     ValidateAudience = true,
-                    ValidAudience = configuration["JWT:Audience"],
+                    ValidAudience = configuration["JWT:Audience"] ?? "http://frontend:80",
+
                     ValidateIssuerSigningKey = true,
+
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(configuration["JWT:SigningKey"]!)
                     ),

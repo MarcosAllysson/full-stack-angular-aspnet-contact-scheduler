@@ -18,11 +18,12 @@ services:
       dockerfile: Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Production #Or Development
+      # - ASPNETCORE_URLS=http://*:80
+      - ASPNETCORE_URLS=http://+:8080
       - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=contactSchedulerDb;Username=postgres;Password=postgres
     ports:
-      - '5000:80'
+      - '5000:8080'
     depends_on:
-      # - db
       db:
         condition: service_healthy # Só inicia após o banco estar saudável
     networks:

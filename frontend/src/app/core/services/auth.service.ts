@@ -1,13 +1,13 @@
 import { Observable, tap } from 'rxjs';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
-import { environment } from 'src/environments/environment.dev';
 import { IAuthResponse } from 'src/app/presentation/pages/auth/interfaces/IAuthResponse';
 import { ILogin } from 'src/app/presentation/pages/auth/interfaces/ILogin';
 import { IRegister } from 'src/app/presentation/pages/auth/interfaces/IRegister';
 import { IUserProfile } from 'src/app/presentation/pages/auth/interfaces/IUserProfile';
-import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'

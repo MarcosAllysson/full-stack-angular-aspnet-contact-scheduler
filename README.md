@@ -35,7 +35,7 @@ http://localhost:4200
 4. API disponível em:
 
 ```sh
-http://localhost:5000
+http://localhost:8080
 ```
 
 5. Banco disponível em:
@@ -44,7 +44,7 @@ http://localhost:5000
 localhost:5432
 ```
 
-### 1. Ou clone o repositório
+### 1. Ou clone o repositório e rode localmente
 
 ```sh
 git clone https://github.com/MarcosAllysson/full-stack-angular-aspnet-contact-scheduler.git

@@ -9,7 +9,7 @@ import {
 import { ContactRegister } from '../interfaces/ContactRegister';
 import { ContactResponse } from '../interfaces/ContactResponse';
 import { ContactUpdate } from '../interfaces/ContactUpdate';
-import { environment } from 'src/environments/environment.dev';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
