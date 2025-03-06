@@ -1,11 +1,7 @@
 <div class="register-container">
 	<p-toast />
 
-	<form
-		[formGroup]="registerForm"
-		(ngSubmit)="register()"
-		class="register-form"
-	>
+	<form [formGroup]="registerForm" class="register-form">
 		<h2>Cadastro</h2>
 
 		<div class="form-group">
@@ -23,7 +19,12 @@
 				"
 				class="error-message"
 			>
-				username inválido.
+				<span *ngIf="registerForm.get('username')?.errors?.['required']">
+					Username é obrigatório.
+				</span>
+				<span *ngIf="registerForm.get('username')?.errors?.['pattern']">
+					Username deve conter apenas letras (ex: "usuario").
+				</span>
 			</div>
 		</div>
 
@@ -42,7 +43,12 @@
 				"
 				class="error-message"
 			>
-				Email inválido.
+				<span *ngIf="registerForm.get('email')?.errors?.['required']">
+					Email é obrigatório.
+				</span>
+				<span *ngIf="registerForm.get('email')?.errors?.['email']">
+					Email inválido.
+				</span>
 			</div>
 		</div>
 
@@ -61,7 +67,24 @@
 				"
 				class="error-message"
 			>
-				Senha deve ter no mínimo 6 caracteres.
+				<span *ngIf="registerForm.get('password')?.errors?.['required']">
+					Senha é obrigatória.
+				</span>
+				<span *ngIf="registerForm.get('password')?.errors?.['minlength']">
+					Senha deve ter no mínimo 6 caracteres.
+				</span>
+				<span *ngIf="hasPasswordError('noUpperCase')">
+					Senha deve conter pelo menos uma letra maiúscula.
+				</span>
+				<span *ngIf="hasPasswordError('noLowerCase')">
+					Senha deve conter pelo menos uma letra minúscula.
+				</span>
+				<span *ngIf="hasPasswordError('noDigit')">
+					Senha deve conter pelo menos um número.
+				</span>
+				<span *ngIf="hasPasswordError('noNonAlphanumeric')">
+					Senha deve conter pelo menos um caractere especial (ex: !#$%).
+				</span>
 			</div>
 		</div>
 
@@ -84,7 +107,13 @@
 			</div>
 		</div>
 
-		<button type="submit" [disabled]="registerForm.invalid">Cadastrar</button>
+		<button
+			type="submit"
+			[disabled]="registerForm.invalid"
+			(click)="register()"
+		>
+			Cadastrar
+		</button>
 
 		<div class="form-links">
 			<a routerLink="/auth/login">Já tem conta? Faça login.</a>

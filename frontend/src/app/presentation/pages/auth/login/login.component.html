@@ -1,7 +1,7 @@
 <div class="login-container">
 	<p-toast />
 
-	<form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+	<form [formGroup]="loginForm" class="login-form">
 		<h2>Login</h2>
 		<div class="form-group">
 			<label for="email">Email</label>
@@ -40,7 +40,9 @@
 			</div>
 		</div>
 
-		<button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+		<button type="submit" [disabled]="loginForm.invalid" (click)="login()">
+			Entrar
+		</button>
 
 		<div class="form-links">
 			<!-- <a routerLink="/auth/forgot-password">Esqueceu sua senha?</a> -->

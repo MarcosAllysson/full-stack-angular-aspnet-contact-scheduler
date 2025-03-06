@@ -104,7 +104,7 @@
 		[style]="{ width: '450px' }"
 		header="Contato"
 	>
-		<form [formGroup]="contactForm" (ngSubmit)="saveContact()">
+		<form [formGroup]="contactForm">
 			<div class="grid p-fluid mt-3">
 				<div class="col-12">
 					<label for="name">Nome</label>
@@ -228,12 +228,13 @@
 					icon="pi pi-check"
 					type="submit"
 					[disabled]="contactForm.invalid"
+					tooltipPosition="bottom"
+					(onClick)="saveContact()"
 					pTooltip="{{
 						contactForm.get('id').value
 							? 'Atualizar contato existente'
 							: 'Criar novo contato'
 					}}"
-					tooltipPosition="bottom"
 				/>
 			</div>
 		</form>

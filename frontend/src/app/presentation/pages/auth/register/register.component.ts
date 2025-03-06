@@ -4,6 +4,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators
 } from '@angular/forms';
 
@@ -41,9 +42,19 @@ export class RegisterComponent {
 
   ngOnInit(): void {
     this.registerForm = this._fb.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z]+$')
+      ]],
+      email: ['', [
+        Validators.required,
+        Validators.email
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(6),
+        this.passwordStrengthValidator
+      ]],
       confirmPassword: ['', Validators.required]
     }, {
       validators: this.passwordMatchValidator
@@ -55,6 +66,40 @@ export class RegisterComponent {
     const confirmPassword = control.get('confirmPassword')?.value;
 
     return password === confirmPassword ? null : { mismatch: true };
+  }
+
+  public passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
+    const value: string = control.value || '';
+
+    const hasUpperCase = /[A-Z]/.test(value);
+    const hasLowerCase = /[a-z]/.test(value);
+    const hasDigit = /\d/.test(value);
+    const hasNonAlphanumeric = /[^a-zA-Z0-9]/.test(value);
+
+    const errors: ValidationErrors = {};
+
+    if (!hasUpperCase) {
+      errors['noUpperCase'] = true;
+    }
+
+    if (!hasLowerCase) {
+      errors['noLowerCase'] = true;
+    }
+
+    if (!hasDigit) {
+      errors['noDigit'] = true;
+    }
+
+    if (!hasNonAlphanumeric) {
+      errors['noNonAlphanumeric'] = true;
+    }
+
+    return Object.keys(errors).length ? errors : null;
+  }
+
+  public hasPasswordError(errorName: string): boolean {
+    return this.registerForm.get('password')?.hasError(errorName)
+      && this.registerForm.get('password')?.touched === true;
   }
 
   public register(): void {
