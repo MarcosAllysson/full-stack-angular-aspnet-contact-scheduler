@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksakai_ng=self.webpackChunksakai_ng||[]).push([[592],{5648:(i,n,r)=>{function t(u,e=!1){if(!u)return"";const s=u.replace(/\D+/g,"");return e?`(${s.substring(0,2)}) ${s.substring(2,3)} ${s.substring(3,7)}-${s.substring(7,11)}`:`(${s.substring(0,2)}) ${s.substring(2,6)}-${s.substring(6,10)}`}r.d(n,{u:()=>t})}}]);

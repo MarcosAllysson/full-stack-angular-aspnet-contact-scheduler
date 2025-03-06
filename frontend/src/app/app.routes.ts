@@ -1,7 +1,7 @@
 import { ExtraOptions, Routes } from '@angular/router';
 
-import { AppLayoutComponent } from './layout/app.layout.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { AppLayoutComponent } from './layout/app.layout.component';
 
 export const routes: Routes = [
     {
@@ -24,12 +24,8 @@ export const routes: Routes = [
         loadChildren: () => import('../app/presentation/pages/auth/auth.routes').then((c) => c.AUTH_ROUTES)
     },
     {
-        path: 'notfound',
-        loadComponent: () => import('./demo/components/notfound/notfound.component').then((c) => c.NotfoundComponent)
-    },
-    {
         path: '**',
-        redirectTo: '/notfound'
+        redirectTo: 'auth'
     },
 ];
 
