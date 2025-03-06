@@ -3,12 +3,12 @@ import {
   inject
 } from '@angular/core';
 
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MessageService } from 'primeng/api';
 
 import { AuthService } from 'src/app/core/services/auth.service';
-import { IUserProfile } from '../interfaces/IUserProfile';
+import { IUserProfile } from '../../auth/interfaces/IUserProfile';
 
 @Component({
   selector: 'app-profile',

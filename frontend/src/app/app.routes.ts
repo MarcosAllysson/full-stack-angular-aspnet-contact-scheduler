@@ -16,6 +16,10 @@ export const routes: Routes = [
             {
                 path: 'contact',
                 loadChildren: () => import('../app/presentation/pages/contact/contact.routes').then(c => c.CONTACT_ROUTES)
+            },
+            {
+                path: 'system',
+                loadChildren: () => import('../app/presentation/pages/system/system.routes').then(c => c.SYSTEM_ROUTES)
             }
         ]
     },

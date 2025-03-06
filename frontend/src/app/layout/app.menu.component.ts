@@ -54,6 +54,10 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-cog',
                         items: [
                             {
+                                label: 'Perfil',
+                                routerLink: ['system/profile']
+                            },
+                            {
                                 label: 'Sair',
                                 command: () => { this._authService.logout() }
                             },
