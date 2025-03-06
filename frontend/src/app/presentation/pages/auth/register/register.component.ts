@@ -16,6 +16,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 
 import { AuthService } from 'src/app/core/services/auth.service';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +27,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
     ButtonModule,
     ReactiveFormsModule,
     RouterLink,
-    ToastModule
+    ToastModule,
+    ProgressSpinnerModule,
   ],
   templateUrl: `./register.component.html`,
   styleUrl: './register.component.scss',
@@ -34,6 +36,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class RegisterComponent {
   public registerForm!: FormGroup;
+  public loading: boolean = false;
 
   private readonly _fb = inject(FormBuilder);
   private readonly _authService = inject(AuthService);
@@ -104,6 +107,8 @@ export class RegisterComponent {
 
   public register(): void {
     if (this.registerForm.valid) {
+      this.loading = true;
+
       const { username, email, password } = this.registerForm.value;
 
       this._authService.register({
@@ -113,6 +118,8 @@ export class RegisterComponent {
         confirmPassword: this.registerForm.get('confirmPassword')?.value
       }).subscribe({
         next: () => {
+          this.loading = false;
+
           this._messageService.add({
             severity: 'success',
             summary: 'Cadastro',
@@ -122,6 +129,8 @@ export class RegisterComponent {
           this._router.navigate(['/auth/login']);
         },
         error: () => {
+          this.loading = false;
+
           this._messageService.add({
             severity: 'error',
             summary: 'Erro',

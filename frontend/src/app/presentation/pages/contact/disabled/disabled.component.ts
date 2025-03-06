@@ -79,9 +79,12 @@ export class DisabledComponent implements OnInit {
   }
 
   public activateContact(contact: ContactResponse) {
+    this.loading = true;
+
     this._contactService.activateContact(contact.id).subscribe({
       next: () => {
         this.loadDisabled();
+        this.loading = false;
 
         this._messageService.add({
           severity: 'success',
@@ -90,6 +93,8 @@ export class DisabledComponent implements OnInit {
         });
       },
       error: () => {
+        this.loading = false;
+
         this._messageService.add({
           severity: 'error',
           summary: 'Erro',

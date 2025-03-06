@@ -50,7 +50,7 @@ export class FavoritesComponent implements OnInit {
   @ViewChild('dt') table: Table;
 
   public data: ContactResponse[] = [];
-  public loading: boolean = true;
+  public loading: boolean = false;
   public contactDialog: boolean = false;
   public selectedContact: ContactResponse | null = null;
 
@@ -82,9 +82,12 @@ export class FavoritesComponent implements OnInit {
   }
 
   public toggleFavorite(contact: ContactResponse) {
+    this.loading = true;
+
     this._contactService.toggleFavorite(contact.id).subscribe({
       next: () => {
         this.loadFavorites();
+        this.loading = false;
 
         this._messageService.add({
           severity: 'success',
@@ -93,6 +96,8 @@ export class FavoritesComponent implements OnInit {
         });
       },
       error: () => {
+        this.loading = false;
+
         this._messageService.add({
           severity: 'error',
           summary: 'Erro',

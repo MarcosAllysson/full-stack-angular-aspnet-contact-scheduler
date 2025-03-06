@@ -177,10 +177,12 @@ export class ListingComponent implements OnInit {
   }
 
   private createContact(contactData: ContactRegister) {
+    this.loading = true;
 
     this._contactService.createContact(contactData).subscribe({
       next: (newContact) => {
         this.loadContacts();
+        this.loading = false;
         this.contactDialog = false;
 
         this._messageService.add({
@@ -190,6 +192,8 @@ export class ListingComponent implements OnInit {
         });
       },
       error: () => {
+        this.loading = false;
+
         this._messageService.add({
           severity: 'error',
           summary: 'Erro',
@@ -200,11 +204,13 @@ export class ListingComponent implements OnInit {
   }
 
   private updateContact(contactData: ContactUpdate) {
+    this.loading = true;
 
     this._contactService.updateContact(contactData.id, contactData).subscribe({
       next: (updatedContact) => {
-        this.contactDialog = false;
         this.loadContacts();
+        this.loading = false;
+        this.contactDialog = false;
 
         this._messageService.add({
           severity: 'success',
@@ -223,9 +229,12 @@ export class ListingComponent implements OnInit {
   }
 
   public deleteContact(contact: ContactResponse) {
+    this.loading = true;
+
     this._contactService.deactivateContact(contact.id).subscribe({
       next: () => {
         this.loadContacts();
+        this.loading = false;
 
         this._messageService.add({
           severity: 'success',
@@ -234,6 +243,8 @@ export class ListingComponent implements OnInit {
         });
       },
       error: () => {
+        this.loading = false;
+
         this._messageService.add({
           severity: 'error',
           summary: 'Erro',
