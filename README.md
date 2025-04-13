@@ -1,16 +1,15 @@
-# 📞 Sistema de Agendamento Telefônico
+# 📞 Phone Scheduling System
 
-Este projeto é um sistema de agendamento telefônico full-stack desenvolvido com **Angular** no frontend e **ASP.NET Core** no backend. Ele possui funcionalidades de gerenciamento de contatos e autenticação.
+This project is a full-stack phone scheduling system built with Angular on the frontend and ASP.NET Core on the backend. It includes features for contact management and authentication.
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Technologies Used
 
 - **Frontend:** Angular + PrimeNG
 - **Backend:** ASP.NET Core + Identity + JWT
-- **Banco de Dados:** PostgreSQL (ou In-Memory Database para ambiente de teste)
+- **DataBase:** PostgreSQL (or In-Memory Database for testing environment)
 - **Autenticação:** Identity + JWT
-- **Deploy:** Frontend no GitHub Pages, API em Free ASP.NET Hosting
 
-## 🛠️ Como Rodar a Aplicação
+## 🛠️ How to Run the Application
 
 ## Docker
 
@@ -141,20 +140,18 @@ ng test
 - **Frontend:** (GitHub Pages)[https://link.com]
 - **Backend:** (Free ASP.NET Hosting)[https://link.com]  -->
 
-## ✅ Funcionalidades
+## ✅ Features
+- User Login and Registration
+- JWT Authentication
+- Contact CRUD (List, Add, Edit, Delete)
+- Favorite Contacts
+- Route Guards and HTTP Interceptors
 
-- Login e Cadastro de Usuários
-- Autenticação JWT
-- CRUD de Contatos (Listar, Adicionar, Editar, Deletar)
-- Favoritar Contatos
-- Guardas de Rota e Interceptores HTTP
-
-## 💡 Melhorias Futuras
-
-- Melhorar UI/UX com animações e melhor feedback visual
-- Adicionar mais testes unitários para serviços e componentes
-- Criar um dashboard de estatísticas
-- Mais funcionalidades relacionados ao estabelecimento
-- Internacionalização
-- Paginação
-- Validação de dados
+## 💡 Future Improvements
+- Enhance UI/UX with animations and better visual feedback
+- Add more unit tests for services and components
+- Create a statistics dashboard
+- Add more features related to the establishment
+- Internationalization
+- Pagination
+- Data validation
